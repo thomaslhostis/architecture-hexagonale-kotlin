@@ -1,11 +1,11 @@
-package fr.thomaslhostis.architecturehexagonale
+package com.github.thomaslhostis.architecturehexagonale
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ArchitectureHexagonaleApplication
+class ArchitectureHexagonale
 
 fun main(args: Array<String>) {
-    runApplication<ArchitectureHexagonaleApplication>(*args)
+    runApplication<ArchitectureHexagonale>(*args)
 }
