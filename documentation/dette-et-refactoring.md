@@ -7,13 +7,14 @@
 * [x] Nettoyer le code inutilisé
 * [x] Séparer les cas d'utilisation dans les tests
 * [x] Nettoyer les pom
-* [ ] Créer la branche presentation
-* [ ] Créer la branche exercices
+* [x] Créer la branche presentation
+* [x] Créer la branche exercices
+* [x] Lancer les tests via Maven
 * [ ] Mettre en place les tests d'intégration MongoDB
 * [ ] CI
 * [ ] Écrire le README
 * [ ] Dependabot
 * [ ] Swagger
 * [ ] Coverage
-* [ ] Tests en anglais
+* [ ] Tests en anglais ?
 * [ ] 

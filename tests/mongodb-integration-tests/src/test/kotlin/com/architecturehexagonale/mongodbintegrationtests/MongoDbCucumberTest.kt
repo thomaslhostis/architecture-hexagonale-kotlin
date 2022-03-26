@@ -14,9 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDO
 @RunWith(Cucumber::class)
 @CucumberOptions(
     plugin = ["pretty"],
-    features = ["../functional/src/main/resources"],
+    features = ["../functional-tests/src/test/resources"],
     glue = [
-        "classpath:com.architecturehexagonale.functionaltests.glue",
+        "classpath:com.architecturehexagonale.functionaltests",
         "classpath:com.architecturehexagonale.mongodbintegrationtests"
     ]
 )

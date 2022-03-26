@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDO
     plugin = ["pretty"],
     features = ["classpath:features"]
 )
-class CucumberTest {
+class CucumberTests {
 
     @SpringBootTest(classes = [ArchitectureHexagonale::class], webEnvironment = RANDOM_PORT)
     @CucumberContextConfiguration
