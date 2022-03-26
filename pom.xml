@@ -2,40 +2,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <name>architecture-hexagonale</name>
-
-    <groupId>com.github.thomaslhostis</groupId>
-    <artifactId>architecture-hexagonale</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.1</version>
-        <relativePath/>
+        <version>2.6.4</version>
     </parent>
 
+    <groupId>com.github.thomaslhostis</groupId>
+    <artifactId>architecture-hexagonale-kotlin</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <name>architecture-hexagonale-kotlin</name>
 
     <modules>
         <module>bootstrap</module>
         <module>commons</module>
         <module>core</module>
+        <module>tests</module>
     </modules>
 
     <properties>
         <!-- Project -->
         <java.version>1.8</java.version>
-        <kotlin.version>1.4.10</kotlin.version>
+        <kotlin.version>1.6.10</kotlin.version>
         <!-- Dependencies -->
+        <cucumber.version>7.2.3</cucumber.version>
+        <mongo-java-server.version>1.39.0</mongo-java-server.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!-- Kotlin -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
@@ -48,43 +45,83 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
+        <!-- Common dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
             <!-- Structure -->
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin</groupId>
                 <artifactId>commons</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale.core</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin.core</groupId>
                 <artifactId>presentation</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale.core</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin.core</groupId>
                 <artifactId>application</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale.core</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin.core</groupId>
                 <artifactId>domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.architecture-hexagonale.core</groupId>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin.core</groupId>
                 <artifactId>infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin.tests</groupId>
+                <artifactId>functional-tests</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- Tier dependencies -->
+            <dependency>
+                <groupId>de.bwaldvogel</groupId>
+                <artifactId>mongo-java-server</artifactId>
+                <version>${mongo-java-server.version}</version>
+            </dependency>
+            <!-- Test dependencies -->
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java8</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-spring</artifactId>
+                <version>${cucumber.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-test-junit</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -101,7 +138,6 @@
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
-                        <plugin>jpa</plugin>
                     </compilerPlugins>
                 </configuration>
                 <dependencies>
@@ -110,13 +146,30 @@
                         <artifactId>kotlin-maven-allopen</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-noarg</artifactId>
-                        <version>${kotlin.version}</version>
-                    </dependency>
                 </dependencies>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <!-- Pour une raison qui m'est inconnue si on ne définit pas ce -->
+                        <!-- paramètre cela empêche le module bdd d'être buildé correctement -->
+                        <classifier>app</classifier>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>build-info</id>
+                            <goals>
+                                <goal>build-info</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

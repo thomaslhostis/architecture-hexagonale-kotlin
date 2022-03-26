@@ -10,17 +10,11 @@
     </parent>
 
     <groupId>com.github.thomaslhostis.architecture-hexagonale-kotlin</groupId>
-    <artifactId>bootstrap</artifactId>
+    <artifactId>tests</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <!-- Structure -->
-        <dependency>
-            <groupId>${project.groupId}.core</groupId>
-            <artifactId>presentation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}.core</groupId>
-            <artifactId>infrastructure</artifactId>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>functional-tests</module>
+        <module>mongodb-integration-tests</module>
+    </modules>
 </project>
