@@ -1,7 +1,6 @@
 package com.architecturehexagonale.application.trainstations
 
 import com.architecturehexagonale.domain.trainstations.entities.TrainStation
-import com.architecturehexagonale.domain.trainstations.exceptions.TrainStationNotFoundException
 import com.architecturehexagonale.domain.trainstations.projectionrepositories.TrainStationsProjectionRepository
 import com.architecturehexagonale.domain.trainstations.services.TrainStationsService
 import com.architecturehexagonale.domain.trainstations.views.TrainStationWithNextDepartures
@@ -22,28 +21,17 @@ class TrainStationsUseCases(
     }
 
     fun findTrainStationWithNextDepartures(trainStationCode: String): TrainStationWithNextDepartures {
-        val trainStation = trainStationsProjectionRepository.findByCode(trainStationCode)
-            ?: throw TrainStationNotFoundException(trainStationCode)
-        val nextDepartures = trainStationsService.findTrainStationNextDepartures(trainStationCode)
-        return TrainStationWithNextDepartures(
-            trainStation.code,
-            trainStation.label,
-            nextDepartures
-        )
+        TODO("Not yet implemented")
+        // 1. Récupérer la gare stockée en base de données à partir du code
+        // 2. Vérifier qu'elle existe, sinon `TrainStationNotFoundException`
+        // 3. Appeler le service partenaire pour récupérer les prochains départs de cette gare
+        // 4. Agréger et retourner le tout
     }
 
     fun updateTrainStation(trainStation: TrainStation) {
-        trainStation.validate()
-        if (!trainStationsProjectionRepository.existsByCode(trainStation.code)) {
-            throw TrainStationNotFoundException(trainStation.code)
-        }
-        trainStationsProjectionRepository.updateTrainStation(trainStation)
-    }
-
-    fun deleteTrainStation(trainStationCode: String) {
-        if (!trainStationsProjectionRepository.existsByCode(trainStationCode)) {
-            throw TrainStationNotFoundException(trainStationCode)
-        }
-        trainStationsProjectionRepository.deleteTrainStation(trainStationCode)
+        TODO("Not yet implemented")
+        // 1. Vérifier que le format du code de gare commence par "TRN_"
+        // 2. Vérifier que la gare existe à partir du code
+        // 3. Utiliser `trainStationsProjectionRepository` pour mettre à jour
     }
 }

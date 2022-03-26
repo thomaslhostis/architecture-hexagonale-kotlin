@@ -33,8 +33,4 @@ class MongoTrainStationsProjectionRepository(
     override fun findAllTrainStations(): List<TrainStation> {
         return trainStationsRepository.findAll().map(TrainStationDocument::toDomainInstance)
     }
-
-    override fun deleteTrainStation(trainStationCode: String) {
-        trainStationsRepository.deleteByCode(trainStationCode)
-    }
 }

@@ -15,12 +15,12 @@ class SupprimerUneGare(
 
     @Lorsque("je supprime cette gare")
     fun jeSupprimeCetteGare() {
-        testContext.responseEntity = trainStationsClient.deleteTrainStation(trainStationBuilder.code)
+        TODO("Not yet implemented")
     }
 
     @Lorsque("^je tente de supprimer la gare \"([^\"]*)\"$")
     fun jeTenteDeSupprimerLaGare(trainStationCode: String) {
-        testContext.responseEntity = trainStationsClient.deleteTrainStation(trainStationCode, "should fail")
+        TODO("Not yet implemented")
     }
 
     @Alors("cette gare est supprimée avec succès")

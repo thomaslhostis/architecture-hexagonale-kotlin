@@ -6,8 +6,6 @@ import com.architecturehexagonale.presentation.io.trainstations.TrainStationInpu
 import com.architecturehexagonale.presentation.io.trainstations.TrainStationOutput
 import com.architecturehexagonale.presentation.io.trainstations.TrainStationWithNextDeparturesOutput
 import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatus.CREATED
-import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -21,9 +19,10 @@ class TrainStationsController(
     fun createTrainStation(
         @RequestBody trainStationInput: TrainStationInput
     ): ResponseEntity<HttpStatus> {
-        val trainStation = trainStationInput.toDomainInstance()
-        trainStationsUseCases.createTrainStation(trainStation)
-        return ResponseEntity(CREATED)
+        TODO("Not yet implemented")
+        // 1. Transformer l'input en objet du domaine
+        // 2. Utiliser `trainStationsUseCases` pour gérer la création
+        // 3. Retourner ResponseEntity(OK)
     }
 
     @GetMapping("/api/train-station-with-next-departures")
@@ -40,23 +39,19 @@ class TrainStationsController(
     fun updateTrainStation(
         @RequestBody trainStationInput: TrainStationInput
     ): ResponseEntity<HttpStatus> {
-        val trainStation = trainStationInput.toDomainInstance()
-        trainStationsUseCases.updateTrainStation(trainStation)
-        return ResponseEntity(OK)
+        TODO("Not yet implemented")
+        // 1. Transformer l'input en objet du domaine
+        // 2. Utiliser `trainStationsUseCases` pour mettre à jour
+        // 3. Retourner ResponseEntity(OK)
     }
 
     @GetMapping("/api/train-stations")
     fun getAllTrainStations(): ResponseEntity<List<TrainStationOutput>> {
-        val allTrainStations = trainStationsProjectionRepository.findAllTrainStations()
-        val allTrainStationOutputs = allTrainStations.map(::TrainStationOutput)
-        return ResponseEntity.ok(allTrainStationOutputs)
+        TODO("Not yet implemented")
+        // 1. Utiliser `trainStationsProjectionRepository` directement pour récupérer les gares
+        // 2. Convertir au format de sortie
+        // 3. Retourner le résultat
     }
 
-    @DeleteMapping("/api/train-station")
-    fun deleteTrainStation(
-        @RequestParam("train_station_code") trainStationCode: String
-    ): ResponseEntity<HttpStatus> {
-        trainStationsUseCases.deleteTrainStation(trainStationCode)
-        return ResponseEntity(OK)
-    }
+    //TODO Bonus : suppression d'une gare
 }

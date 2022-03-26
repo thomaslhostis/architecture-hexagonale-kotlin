@@ -8,5 +8,4 @@ interface TrainStationsProjectionRepository {
     fun findByCode(trainStationCode: String): TrainStation?
     fun updateTrainStation(trainStation: TrainStation)
     fun findAllTrainStations(): List<TrainStation>
-    fun deleteTrainStation(trainStationCode: String)
 }
