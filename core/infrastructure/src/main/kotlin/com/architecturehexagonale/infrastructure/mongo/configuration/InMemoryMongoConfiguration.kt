@@ -1,5 +1,6 @@
-package com.architecturehexagonale.infrastructure.mongo
+package com.architecturehexagonale.infrastructure.mongo.configuration
 
+import com.architecturehexagonale.commons.Profiles.MONGO
 import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
 import com.mongodb.client.MongoClient
@@ -8,21 +9,19 @@ import de.bwaldvogel.mongo.MongoServer
 import de.bwaldvogel.mongo.backend.memory.MemoryBackend
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import org.springframework.data.mongodb.MongoDatabaseFactory
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory
 
 @Configuration
+@Profile("!$MONGO")
 class InMemoryMongoConfiguration {
-
-    companion object {
-        const val DATABASE_NAME = "test"
-    }
 
     @Bean
     fun mongoUri(mongoServer: MongoServer): String {
         val serverAddress = mongoServer.localAddress
-        return "mongodb://${serverAddress.hostName}:${serverAddress.port}/$DATABASE_NAME"
+        return "mongodb://${serverAddress.hostName}:${serverAddress.port}/test-database"
     }
 
     @Bean

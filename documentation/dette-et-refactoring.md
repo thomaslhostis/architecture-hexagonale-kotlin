@@ -10,11 +10,8 @@
 * [x] Créer la branche presentation
 * [x] Créer la branche exercices
 * [x] Lancer les tests via Maven
-* [ ] Mettre en place les tests d'intégration MongoDB
-* [ ] CI
+* [x] Mettre en place les tests d'intégration MongoDB
+* [x] CI
 * [ ] Écrire le README
 * [ ] Dependabot
-* [ ] Swagger
-* [ ] Coverage
-* [ ] Tests en anglais ?
 * [ ] 
